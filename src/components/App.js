@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Home from '../views/Home';
-import QuestionDetails from '../views/QuestionDetails';
-import AddNewQuestion from '../views/AddNewQuestion';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import asyncComponent from './AsyncComponent';
+
+const Home = asyncComponent(() => import('../views/Home'));
+const QuestionDetails = asyncComponent(() => import('../views/QuestionDetails'));
+const AddNewQuestion = asyncComponent(() => import('../views/AddNewQuestion'));
 
 class App extends Component {
   render() {
