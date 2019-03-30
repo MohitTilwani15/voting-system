@@ -1,7 +1,10 @@
+import { all } from 'redux-saga/effects';
 import { getQuestions, getQuestionDetails, addQuestion } from './questions';
 
 export default function* sagas() {
-  yield getQuestions();
-  yield getQuestionDetails();
-  yield addQuestion();
+  yield all([
+    getQuestions(),
+    getQuestionDetails(),
+    addQuestion(),
+  ]);
 };

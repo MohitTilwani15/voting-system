@@ -1,30 +1,20 @@
 import { call, put, take } from 'redux-saga/effects';
-import axios from 'axios';
+import http from '../services/http';
 import { setQuestions, setError } from '../actions/questionActions';
 import { setQuestionDetails, setQuestionDetailsError } from '../actions/questionDetails';
 import { addQuestionSuccess, addQuestionError } from '../actions/addQuestions';
 import { QUESTIONS, QUESTIONS_DETAILS, ADD_QUESTION } from '../constants';
 
 function fetchQuestionsRequest() {
-  return axios({
-    method: 'get',
-    url: 'http://polls.apiblueprint.org/questions',
-  });
+  return http.get('questions');
 };
 
 function fetchQuestionDetailsRequest(id) {
-  return axios({
-    method: 'get',
-    url: `http://polls.apiblueprint.org/questions/${id}`,
-  });
+  return http.get(`questions/${id}`);
 };
 
 function addQuestionRequest(data) {
-  return axios({
-    method: 'post',
-    url: 'http://polls.apiblueprint.org/questions',
-    data,
-  });
+  return http.post('questions', data);
 };
 
 export function* getQuestions() {
