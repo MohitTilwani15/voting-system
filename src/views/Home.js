@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import dayjs from 'dayjs';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Chip from '@material-ui/core/Chip';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -42,7 +44,10 @@ class Home extends Component {
       return (
         <Link to={question.url} key={question.url}>
           <ListItem button>
-            <ListItemText primary={question.question} />
+            <ListItemText
+              primary={question.question}
+            />
+            <Chip label={dayjs(question.published_at).format('DD-MM-YYYY')} />
           </ListItem>
         </Link>
       );
