@@ -10,9 +10,9 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
 import { withStyles } from '@material-ui/core/styles';
 
+import Title from '../components/Title';
 import { loadQuestions } from '../actions/questionActions';
 import { storeQuestionLocally } from '../actions/addQuestions';
 
@@ -75,6 +75,7 @@ class Home extends Component {
 
     return (
       <Paper className={classes.root}>
+        <Title title='home' />
         <TextField
           id="standard-full-width"
           label="Question"

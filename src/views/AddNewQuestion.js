@@ -11,6 +11,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { addQuestion } from '../actions/addQuestions';
 import SimpleSnackbar from '../components/Snackbar';
+import Title from '../components/Title';
 
 const styles = theme => ({
   root: {
@@ -98,6 +99,7 @@ class AddNewQuestion extends Component {
 
     return (
       <Paper className={classes.root}>
+        <Title title='Add Question' />
         <Typography variant="h5" component="h2">{question}</Typography>
         <TextField
           id="standard-full-width"
