@@ -4,6 +4,7 @@ import { loadQuestionDetails } from '../actions/questionDetails';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -17,9 +18,8 @@ class QuestionDetails extends Component {
     return this.props.questionDetails.choices.map((choice) => {
       return (
         <ListItem key={choice.url}>
-          <ListItemText>
-            {choice.choice} ({choice.votes})
-          </ListItemText>
+          <ListItemText primary={choice.choice} />
+          <Chip label={choice.votes} />
         </ListItem>
       );
     });

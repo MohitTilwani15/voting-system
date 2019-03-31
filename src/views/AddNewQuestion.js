@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
-import { addQuestion } from '../actions/addQuestions';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -10,11 +9,17 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { withStyles } from '@material-ui/core/styles';
 
+import { addQuestion } from '../actions/addQuestions';
+import SimpleSnackbar from '../components/Snackbar';
+
 const styles = theme => ({
   root: {
     ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
+  },
+  addButton: {
+    marginRight: theme.spacing.unit * 2,
   },
 });
 
@@ -22,10 +27,11 @@ class AddNewQuestion extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { choices: [], choiceText: '' };
+    this.state = { choices: [], choiceText: '', isInputError: false };
     this.onChoiceInputChange = this.onChoiceInputChange.bind(this);
     this.onAddChoiceButtonClick = this.onAddChoiceButtonClick.bind(this);
     this.submitChoices = this.submitChoices.bind(this);
+    this.hideError = this.hideError.bind(this);
   }
 
   onChoiceInputChange(e) {
@@ -35,6 +41,14 @@ class AddNewQuestion extends Component {
   }
 
   onAddChoiceButtonClick() {
+    if (!this.state.choiceText) {
+      this.setState({
+        isInputError: true,
+      });
+
+      return false;
+    }
+
     this.setState((state, props) => {
       const choices = [...state.choices, state.choiceText];
 
@@ -42,6 +56,12 @@ class AddNewQuestion extends Component {
         choices,
         choiceText: '',
       }
+    });
+  }
+
+  hideError() {
+    this.setState({
+      isInputError: false,
     });
   }
 
@@ -70,7 +90,7 @@ class AddNewQuestion extends Component {
 
   render() {
     const { classes, question, history } = this.props;
-    const { choiceText } = this.state;
+    const { choiceText, isInputError } = this.state;
 
     if (!question) {
       history.push('/');
@@ -95,12 +115,13 @@ class AddNewQuestion extends Component {
         <List>
           { this.renderChoices() }
         </List>
-        <Button variant="contained" color="secondary" onClick={this.onAddChoiceButtonClick}>
+        <Button variant="contained" color="secondary" className={classes.addButton} onClick={this.onAddChoiceButtonClick}>
             Add
         </Button>
         <Button variant="contained" color="primary" onClick={this.submitChoices}>
             Send
         </Button>
+        <SimpleSnackbar open={isInputError} hideError={this.hideError} />
       </Paper>
     );
   }

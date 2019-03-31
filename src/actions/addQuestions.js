@@ -5,6 +5,10 @@ const storeQuestionLocally = (question) => ({
   question,
 });
 
+const resetQuestion = () => ({
+  type: ADD_QUESTION.RESET,
+});
+
 const addQuestion = (payload) => ({
   type: ADD_QUESTION.LOAD,
   payload,
@@ -21,6 +25,7 @@ const addQuestionError = error => ({
 
 export {
   storeQuestionLocally,
+  resetQuestion,
   addQuestion,
   addQuestionSuccess,
   addQuestionError,

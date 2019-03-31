@@ -16,6 +16,8 @@ const addQuestion = (state = initialState, action) => {
       return { ...state, fetching: false };
     case ADD_QUESTION.LOAD_FAIL:
       return { ...state, fetching: false, error: action.error }; 
+    case ADD_QUESTION.RESET:
+      return { ...state, question: null }
     default:
       return state;
   }

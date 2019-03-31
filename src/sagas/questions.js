@@ -2,7 +2,7 @@ import { call, put, take } from 'redux-saga/effects';
 import http from '../services/http';
 import { setQuestions, setError } from '../actions/questionActions';
 import { setQuestionDetails, setQuestionDetailsError } from '../actions/questionDetails';
-import { addQuestionSuccess, addQuestionError } from '../actions/addQuestions';
+import { addQuestionSuccess, addQuestionError, resetQuestion } from '../actions/addQuestions';
 import { QUESTIONS, QUESTIONS_DETAILS, ADD_QUESTION } from '../constants';
 
 function fetchQuestionsRequest() {
@@ -56,7 +56,8 @@ export function* addQuestion() {
       yield call(addQuestionRequest, payload.data);
   
       // dispatch a success action to the store with the questions
-      yield put(addQuestionSuccess())
+      yield put(addQuestionSuccess());
+      yield put(resetQuestion());
   
       payload.history.push('/');
     } catch (error) {
