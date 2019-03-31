@@ -9,14 +9,19 @@ import * as serviceWorker from './serviceWorker';
 const store = configureStore();
 
 const GlobalStyle = createGlobalStyle`
-  body {
-    background: -webkit-linear-gradient(top, #4357ff 0%,#4357ff 50%,#3745af 51%,#3745af 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  html {
+    height: 100%;
 
-    a {
-      text-decoration: none;
+    body {
+      min-height: 100%;
+      background: -webkit-linear-gradient(top, #4357ff 0%,#4357ff 50%,#3745af 51%,#3745af 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      a {
+        text-decoration: none;
+      }
     }
   }
 `;
