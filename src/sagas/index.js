@@ -1,10 +1,8 @@
-import { all } from 'redux-saga/effects';
+import { spawn } from 'redux-saga/effects';
 import { getQuestions, getQuestionDetails, addQuestion } from './questions';
 
 export default function* sagas() {
-  yield all([
-    getQuestions(),
-    getQuestionDetails(),
-    addQuestion(),
-  ]);
+  yield spawn(getQuestions);
+  yield spawn(getQuestionDetails);
+  yield spawn(addQuestion);
 };
