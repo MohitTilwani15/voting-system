@@ -55,7 +55,7 @@ class Home extends Component {
   }
 
   addQuestion() {
-    this.props.addQuestionLocally(this.state.question);
+    this.props.storeQuestionLocally(this.state.question);
     this.props.history.push('/add');
   }
 
@@ -108,10 +108,9 @@ const mapStateToProps = state => ({
   question: state.addQuestion.question,
 });
 
-const mapDispatchToProps = dispatch => ({
-  loadQuestions: () => dispatch(loadQuestions()),
-  addQuestionLocally: (question) => dispatch(storeQuestionLocally(question)),
-});
-
+const mapDispatchToProps = {
+  loadQuestions,
+  storeQuestionLocally,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Home));

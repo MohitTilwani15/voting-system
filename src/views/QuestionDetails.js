@@ -50,8 +50,8 @@ const mapStateToProps = state => ({
   questionDetails: state.questionDetails.data,
 });
 
-const mapDispatchToProps = dispatch => ({
-  loadQuestionDetails: (id) => dispatch(loadQuestionDetails(id)),
-});
+const mapDispatchToProps = {
+  loadQuestionDetails,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionDetails);

@@ -133,8 +133,8 @@ const mapStateToProps = state => ({
   question: state.addQuestion.question,
 });
 
-const mapDispatchToProps = dispatch => ({
-  addQuestion: ({data, history}) => dispatch(addQuestion({data, history})),
-});
+const mapDispatchToProps = {
+  addQuestion,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(AddNewQuestion));
